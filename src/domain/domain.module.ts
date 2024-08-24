@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CompanyEntity } from './entities/company.entity';
+import { InfrastructureModule } from 'src/infrastructure/infrastructure.module';
+import { CompanyService } from './services/company.service';
 
 @Module({
-  // imports: [TypeOrmModule.forFeature([Entity])],//TODO: Importar entities
-  // providers: [Service, { provide: 'IService', useClass: Service }] //TODO: Importar services,
-  // exports: [IService] //TODO: Exportar interface service
+  imports: [TypeOrmModule.forFeature([CompanyEntity]), InfrastructureModule],
+  providers: [{ provide: 'ICompanyService', useClass: CompanyService }],
+  exports: ['ICompanyService'],
 })
 export class DomainModule {}
