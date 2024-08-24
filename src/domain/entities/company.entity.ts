@@ -5,19 +5,19 @@ export class CompanyEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   name: string;
 
-  @Column()
-  description: string;
+  @Column({ type: 'varchar', nullable: true })
+  description?: string;
 
-  @Column()
+  @Column({ type: 'simple-array', nullable: true })
   //@JoinColumn()
   //@ManyToOne(JobVacancyEntity, (jobVacancy) => jobVacancy.company)
-  job_vacancies: string[];
+  job_vacancies?: string[];
 
-  @Column()
+  @Column({ type: 'simple-array', nullable: true })
   //@JoinColumn()
   //@ManyToOne(FeedbackEntity, (feedback) => feedback.company)
-  feedbacks: string[];
+  feedbacks?: string[];
 }
