@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { JobVacancyEntity } from './job-vacancy.entity';
 
 @Entity()
 export class CompanyEntity {
@@ -12,8 +13,9 @@ export class CompanyEntity {
   description?: string;
 
   @Column({ type: 'simple-array', nullable: true })
-  //@JoinColumn()
-  //@ManyToOne(JobVacancyEntity, (jobVacancy) => jobVacancy.company)
+  @OneToMany(() => JobVacancyEntity, (jobVacancy) => jobVacancy.companyId, {
+    eager: true,
+  })
   job_vacancies?: string[];
 
   @Column({ type: 'simple-array', nullable: true })
