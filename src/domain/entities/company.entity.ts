@@ -13,7 +13,7 @@ export class CompanyEntity {
   description?: string;
 
   @Column({ type: 'simple-array', nullable: true })
-  @OneToMany(() => JobVacancyEntity, (jobVacancy) => jobVacancy.companyId, {
+  @OneToMany(() => JobVacancyEntity, (jobVacancy) => jobVacancy.company_id, {
     eager: true,
   })
   job_vacancies?: string[];

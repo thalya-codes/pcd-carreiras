@@ -14,5 +14,5 @@ export class JobVacancyEntity {
 
   @Column({ type: 'varchar' })
   @ManyToOne(() => CompanyEntity, (company) => company.job_vacancies)
-  companyId: string;
+  company_id: string;
 }

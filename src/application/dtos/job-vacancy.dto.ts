@@ -10,7 +10,8 @@ export class BaseJobVacancyDto {
   description?: string;
 
   @IsNotEmpty()
-  companyId: string;
+  @IsString()
+  company_id: string;
 }
 
 export class JobVacancyDto extends BaseJobVacancyDto {
