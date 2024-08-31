@@ -1,4 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { JobVacancyEntity } from './job-vacancy.entity';
 import { FeedbackEntity } from './feedback.entity';
 
 @Entity()
@@ -13,8 +14,9 @@ export class CompanyEntity {
   description?: string;
 
   @Column({ type: 'simple-array', nullable: true })
-  //@JoinColumn()
-  //@ManyToOne(JobVacancyEntity, (jobVacancy) => jobVacancy.company)
+  @OneToMany(() => JobVacancyEntity, (jobVacancy) => jobVacancy.company_id, {
+    eager: true,
+  })
   job_vacancies?: string[];
 
   @Column({ type: 'simple-array', nullable: true })
@@ -22,6 +24,6 @@ export class CompanyEntity {
   //@ManyToOne(FeedbackEntity, (feedback) => feedback.company)
   feedbacks?: string[];
 
-  @OneToMany(() => FeedbackEntity, feedback => feedback.company_id)
-  feedbacksList: FeedbackEntity[]; 
+  @OneToMany(() => FeedbackEntity, (feedback) => feedback.company_id)
+  feedbacksList: FeedbackEntity[];
 }
