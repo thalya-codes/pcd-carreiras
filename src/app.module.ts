@@ -19,7 +19,7 @@ import { CompanyEntity } from './domain/entities/company.entity';
       // port: parseInt(process.env.DB_PORT),
       // username: process.env.DB_USERNAME,
       // password: process.env.DB_PASSWORD,
-      // synchronize: true, //TODO: Remover quando for para prod
+      synchronize: true, //TODO: Remover quando for para prod
     }),
     ApplicationModule,
     DomainModule,
