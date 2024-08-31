@@ -9,6 +9,6 @@ import { FeedbackEntity } from './entities/feedback.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([CompanyEntity, FeedbackEntity]), InfrastructureModule],
   providers: [{ provide: 'ICompanyService', useClass: CompanyService }, { provide: 'IFeedbackService', useClass: FeedbackService }],
-  exports: ['IFeedbackService'],
+  exports: ['IFeedbackService', 'ICompanyService'],
 })
 export class DomainModule {}
