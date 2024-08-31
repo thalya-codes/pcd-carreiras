@@ -29,11 +29,11 @@ export class FeedbackController {
    return await this.feedbackService.findOneFeedback(id);
  }
 
-//  @Get('top-companies/:limit')
-//  async getTopCompaniesByAccessibilityRating(
-//    @Param('limit') limit: number
-//  ): Promise<CompanyRatingDto[]> {  
-//    return await this.feedbackService.findTopCompaniesByAccessibilityRating(limit);
-//  }
+ @Get('top-companies/:limit')
+ async getTopCompaniesByAccessibilityRating(
+   @Param('limit') limit: number
+ ): Promise<CompanyRatingDto[]> {  
+   return await this.feedbackService.findTopCompaniesByAccessibilityRating(limit);
+ }
 
 }

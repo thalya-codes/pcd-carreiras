@@ -36,11 +36,9 @@ export class FeedbackService implements IFeedbackService {
  }
 
  async findTopCompaniesByAccessibilityRating(limit: number): Promise<CompanyRatingDto[]> {
-  try {
-   return await this.feedbackRepository.findTopCompaniesByAccessibilityRating(limit);
-  } catch (error) {
-   console.error({ error });
-  }
- }
+  const results = await this.feedbackRepository.findTopCompaniesByAccessibilityRating(limit);
+  return results;
+}
+
 
 }
