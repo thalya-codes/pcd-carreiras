@@ -13,12 +13,12 @@ import { CompanyEntity } from './domain/entities/company.entity';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: process.env.DATABASE_URL
+      url: process.env.DATABASE_URL,
+      entities: [CompanyEntity],
       // database: process.env.DB_NAME,
       // port: parseInt(process.env.DB_PORT),
       // username: process.env.DB_USERNAME,
       // password: process.env.DB_PASSWORD,
-      // entities: [CompanyEntity],
       // synchronize: true, //TODO: Remover quando for para prod
     }),
     ApplicationModule,
