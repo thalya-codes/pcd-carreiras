@@ -15,6 +15,7 @@ import { CompanyEntity } from './domain/entities/company.entity';
       type: 'postgres',
       url: process.env.DATABASE_URL,
       entities: [CompanyEntity],
+      synchronize: true,
     }),
     ApplicationModule,
     DomainModule,
