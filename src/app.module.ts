@@ -5,6 +5,7 @@ import { ApplicationModule } from './application/application.module';
 import { DomainModule } from './domain/domain.module';
 import { InfrastructureModule } from './infrastructure/infrastructure.module';
 import { CompanyEntity } from './domain/entities/company.entity';
+import { FeedbackEntity } from './domain/entities/feedback.entity';
 import { JobVacancyEntity } from './domain/entities/job-vacancy.entity';
 
 @Module({
@@ -14,12 +15,14 @@ import { JobVacancyEntity } from './domain/entities/job-vacancy.entity';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
+      // url: process.env.DATABASE_URL,
       database: process.env.DB_NAME,
       port: parseInt(process.env.DB_PORT),
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
-      entities: [CompanyEntity, JobVacancyEntity],
-      synchronize: true, //TODO: Remover quando for para prod
+      // entities: [FeedbackEntity],
+      synchronize: true, //TODO: Remover quando for para prod,
+      entities: [CompanyEntity, FeedbackEntity, JobVacancyEntity],
     }),
     ApplicationModule,
     DomainModule,
