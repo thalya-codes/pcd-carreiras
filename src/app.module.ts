@@ -5,6 +5,8 @@ import { ApplicationModule } from './application/application.module';
 import { DomainModule } from './domain/domain.module';
 import { InfrastructureModule } from './infrastructure/infrastructure.module';
 import { CompanyEntity } from './domain/entities/company.entity';
+import { FeedbackEntity } from './domain/entities/feedback.entity';
+import { JobVacancyEntity } from './domain/entities/job-vacancy.entity';
 
 @Module({
   imports: [
@@ -17,8 +19,9 @@ import { CompanyEntity } from './domain/entities/company.entity';
       port: parseInt(process.env.DB_PORT),
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
-      entities: [CompanyEntity],
-      synchronize: true, //TODO: Remover quando for para prod
+      entities: [CompanyEntity, FeedbackEntity, JobVacancyEntity],
+      synchronize: true,
+      // url: process.env.DATABASE_URL,
     }),
     ApplicationModule,
     DomainModule,
