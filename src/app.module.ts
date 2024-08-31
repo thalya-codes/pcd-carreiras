@@ -17,7 +17,7 @@ import { JobVacancyEntity } from './domain/entities/job-vacancy.entity';
       type: 'postgres',
       url: process.env.DATABASE_URL,
       entities: [CompanyEntity, FeedbackEntity, JobVacancyEntity],
-      synchronize: false,
+      synchronize: true,
     }),
     ApplicationModule,
     DomainModule,
