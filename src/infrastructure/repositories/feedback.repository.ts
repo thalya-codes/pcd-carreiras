@@ -38,23 +38,24 @@ export class FeedbackRepository implements IFeedbackRepository {
     return await this.feedbackRepository.find();
   }
 
-  async findTopCompaniesByAccessibilityRating(limit: number): Promise<CompanyRatingDto[]> {
-    const feedbacks = await this.feedbackRepository
-      .createQueryBuilder('feedback')
-      .innerJoinAndSelect('feedback.company', 'company')
-      .select('company.id')
-      .addSelect('company.name')
-      .addSelect('AVG(feedback.accessibilityRating)', 'avgRating')
-      .groupBy('company.id')
-      .orderBy('avgRating', 'DESC')
-      .limit(limit)
-      .getRawMany();
-  
-    return feedbacks.map(feedback => ({
-      id: feedback.company_id,  
-      name: feedback.company_name, 
-      avgRating: feedback.avgRating
-    }));
+  async findTopCompaniesByAccessibilityRating() {
+    return this.feedbackRepository.query(`
+      SELECT 
+        "company"."id" AS "company_id", 
+        "company"."name" AS "company_name", 
+        AVG("feedback"."accessibilityRating") AS "avgRating" 
+      FROM 
+        "feedback_entity" "feedback"
+      INNER JOIN 
+        "company_entity" "company" 
+      ON 
+        "company"."id"::uuid = "feedback"."company_id"::uuid
+      GROUP BY 
+        "company"."id", 
+        "company"."name"
+      ORDER BY 
+        "avgRating" DESC 
+      LIMIT 5;
+    `);
   }
-
 }
