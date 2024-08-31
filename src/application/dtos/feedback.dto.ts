@@ -1,13 +1,13 @@
-import { IsInt, IsString, IsUUID, Max, Min } from 'class-validator';
+import { IsInt, IsString, Max, Min } from 'class-validator';
 
 export class CreateFeedbackDto {
-  @IsUUID()
-  companyId: string;
+  @IsString()
+  companyName: string;
 
   @IsInt()
   @Min(1)
   @Max(5)
-  score: number;
+  accessibilityRating: number;
 
   @IsString()
   comment: string;

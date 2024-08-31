@@ -3,6 +3,7 @@ import { IFeedbackService } from "src/domain/interfaces/feedback.interface";
 import { FeedbackService } from "src/domain/services/feedback.service";
 import { CreateFeedbackDto } from "../dtos/feedback.dto";
 import { FeedbackEntity } from "src/domain/entities/feedback.entity";
+import { CompanyRatingDto } from "../dtos/CompanyRatingDto";
 
 @Controller('feedback')
 export class FeedbackController {
@@ -27,4 +28,12 @@ export class FeedbackController {
  async getOneFeedback(@Param() { id }: { id: string }): Promise<FeedbackEntity> {
    return await this.feedbackService.findOneFeedback(id);
  }
+
+ @Get('top-companies/:limit')
+ async getTopCompaniesByAccessibilityRating(
+   @Param('limit') limit: number
+ ): Promise<CompanyRatingDto[]> {  
+   return await this.feedbackService.findTopCompaniesByAccessibilityRating(limit);
+ }
+
 }

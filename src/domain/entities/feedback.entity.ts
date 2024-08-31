@@ -1,15 +1,17 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, JoinColumn } from 'typeorm';
+import { CompanyEntity } from './company.entity';
 
 @Entity()
 export class FeedbackEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  // @ManyToOne(() => Company, (company) => company?.feedbacks, { nullable: false })
-  // company: Company;
+  @ManyToOne(() => CompanyEntity, (company) => company.feedbacks, { nullable: false, cascade: true })
+  @JoinColumn({ name: 'company_name' })
+  company: CompanyEntity;
 
   @Column({ type: 'int', nullable: false })
-  score: number;
+  accessibilityRating: number;
 
   @Column({ type: 'text', nullable: false})
   comment: string;
