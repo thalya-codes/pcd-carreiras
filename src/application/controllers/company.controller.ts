@@ -2,6 +2,7 @@ import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
 import { ICompanyService } from 'src/domain/interfaces/company.interface';
 import { CompanyDto, CreateCompanyDto } from '../dtos/company.dto';
 
+@Controller('company')
 export class CompanyController {
   constructor(
     @Inject('ICompanyService') private readonly companyService: ICompanyService,
