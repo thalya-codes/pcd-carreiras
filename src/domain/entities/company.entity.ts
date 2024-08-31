@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { JobVacancyEntity } from './job-vacancy.entity';
+import { FeedbackEntity } from './feedback.entity';
 
 @Entity()
 export class CompanyEntity {
@@ -22,4 +23,7 @@ export class CompanyEntity {
   //@JoinColumn()
   //@ManyToOne(FeedbackEntity, (feedback) => feedback.company)
   feedbacks?: string[];
+
+  @OneToMany(() => FeedbackEntity, (feedback) => feedback.company_id)
+  feedbacksList: FeedbackEntity[];
 }

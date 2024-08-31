@@ -18,6 +18,11 @@ import { JobVacancyService } from 'src/domain/services/job-vacancy.service';
     { provide: 'IFeedbackService', useClass: FeedbackService },
     { provide: 'IJobVacancyService', useClass: JobVacancyService },
   ],
-  exports: ['ICompanyService', 'IFeedbackService', 'IJobVacancyService'],
+  exports: [
+    'ICompanyService',
+    'IFeedbackService',
+    'ICompanyService',
+    'IJobVacancyService',
+  ],
 })
 export class DomainModule {}
