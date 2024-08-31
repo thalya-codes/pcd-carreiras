@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { IFeedbackRepository } from "src/domain/interfaces/feedback.interface";
-import { CreateFeedbackDto } from "src/application/dtos/feedback.dto";
+import { CreateFeedbackDto, FeedbackDto } from "src/application/dtos/feedback.dto";
 import { FeedbackEntity } from "src/domain/entities/feedback.entity";
 import { CompanyRatingDto } from "src/application/dtos/CompanyRatingDto";
 
@@ -13,16 +13,16 @@ export class FeedbackRepository implements IFeedbackRepository {
     private readonly feedbackRepository: Repository<FeedbackEntity>,
   ) {}
 
-  async create(createFeedbackDto: CreateFeedbackDto): Promise<FeedbackEntity> {
+  async create(createFeedbackDto: CreateFeedbackDto): Promise<FeedbackDto> {
     const feedback = this.feedbackRepository.create(createFeedbackDto);
     return await this.feedbackRepository.save(feedback);
   }
 
-  async findOne(id: string): Promise<FeedbackEntity> {
+  async findOne(id: string): Promise<FeedbackDto> {
     return await this.feedbackRepository.findOne({ where: { id } });
   }
 
-  async findAll(): Promise<FeedbackEntity[]> {
+  async findAll(): Promise<FeedbackDto[]> {
     return await this.feedbackRepository.find();
   }
 

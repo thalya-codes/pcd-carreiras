@@ -1,21 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, JoinColumn } from 'typeorm';
-import { CompanyEntity } from './company.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class FeedbackEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => CompanyEntity, (company) => company.feedbacks, { nullable: false, cascade: true })
-  @JoinColumn({ name: 'company_name' })
-  company: CompanyEntity;
-
-  @Column({ type: 'int', nullable: false })
+  @Column({ type: 'int' })
   accessibilityRating: number;
 
-  @Column({ type: 'text', nullable: false})
+  @Column({ type: 'text' })
   comment: string;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdIn: Date;
+
+  @Column({ type: 'varchar' })
+  company_name: string;
 }

@@ -1,9 +1,6 @@
-import { IsInt, IsString, Max, Min } from 'class-validator';
+import { IsInt, IsNotEmpty, IsOptional, IsString, Max, Min } from 'class-validator';
 
-export class CreateFeedbackDto {
-  @IsString()
-  companyName: string;
-
+export class BaseFeedbackDto {
   @IsInt()
   @Min(1)
   @Max(5)
@@ -11,4 +8,18 @@ export class CreateFeedbackDto {
 
   @IsString()
   comment: string;
+
+  @IsNotEmpty()
+  @IsString()
+  company_name: string;
 }
+
+export class FeedbackDto extends BaseFeedbackDto {
+  @IsString()
+  id: string;
+
+  @IsString()
+  createdIn: Date; 
+}
+
+export class CreateFeedbackDto extends BaseFeedbackDto {}
