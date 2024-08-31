@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { JobVacancyEntity } from './job-vacancy.entity';
 import { FeedbackEntity } from './feedback.entity';
 
-@Entity()
+@Entity('company_entity')
 export class CompanyEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
