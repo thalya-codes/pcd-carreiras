@@ -4,7 +4,9 @@ import {
   JobVacancyDto,
   CreateJobVacancyDto,
 } from 'src/application/dtos/job-vacancy.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('job-vacancy')
 @Controller('job-vacancy')
 export class JobVacancyController {
   constructor(
