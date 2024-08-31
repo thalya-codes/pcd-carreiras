@@ -11,7 +11,7 @@ export class BaseFeedbackDto {
 
   @IsNotEmpty()
   @IsString()
-  company_name: string;
+  company_id: string;
 }
 
 export class FeedbackDto extends BaseFeedbackDto {

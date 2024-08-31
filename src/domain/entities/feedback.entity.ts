@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { CompanyEntity } from './company.entity';
 
 @Entity()
 export class FeedbackEntity {
@@ -15,5 +16,8 @@ export class FeedbackEntity {
   createdIn: Date;
 
   @Column({ type: 'varchar' })
-  company_name: string;
+  company_id: string;
+
+  @ManyToOne(() => CompanyEntity, company => company.feedbacksList, { eager: true })
+  company: CompanyEntity;  
 }

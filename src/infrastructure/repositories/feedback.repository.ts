@@ -5,16 +5,28 @@ import { IFeedbackRepository } from "src/domain/interfaces/feedback.interface";
 import { CreateFeedbackDto, FeedbackDto } from "src/application/dtos/feedback.dto";
 import { FeedbackEntity } from "src/domain/entities/feedback.entity";
 import { CompanyRatingDto } from "src/application/dtos/CompanyRatingDto";
+import { CompanyEntity } from "src/domain/entities/company.entity";
 
 @Injectable()
 export class FeedbackRepository implements IFeedbackRepository {
   constructor(
     @InjectRepository(FeedbackEntity)
     private readonly feedbackRepository: Repository<FeedbackEntity>,
+    @InjectRepository(CompanyEntity)
+    private readonly companyRepository: Repository<CompanyEntity>
   ) {}
 
   async create(createFeedbackDto: CreateFeedbackDto): Promise<FeedbackDto> {
-    const feedback = this.feedbackRepository.create(createFeedbackDto);
+    const company = await this.companyRepository.findOne({ where: { id: createFeedbackDto.company_id } });
+    if (!company) {
+      throw new Error('Company not found');
+    }
+
+    const feedback = this.feedbackRepository.create({
+      ...createFeedbackDto,
+      company: company // Associe o feedback à empresa
+    });
+    
     return await this.feedbackRepository.save(feedback);
   }
 
