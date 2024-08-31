@@ -12,7 +12,7 @@ export class FeedbackController {
  ){}
 
  @Post('create')
- async CreateFeedbackDto(
+ async CreateFeedback(
    @Body() createFeedbackDto: CreateFeedbackDto,
  ): Promise<FeedbackEntity> {
    return await this.feedbackService.createFeedback(createFeedbackDto);
