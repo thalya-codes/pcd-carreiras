@@ -20,4 +20,9 @@ export class CompanyEntity {
   //@JoinColumn()
   //@ManyToOne(FeedbackEntity, (feedback) => feedback.company)
   feedbacks?: string[];
+
+  constructor(id: string, name: string) {
+    this.id = id;
+    this.name = name;
+  }
 }
