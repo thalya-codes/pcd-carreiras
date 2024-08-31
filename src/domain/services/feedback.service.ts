@@ -37,7 +37,6 @@ export class FeedbackService implements IFeedbackService {
 
  async findTopCompaniesByAccessibilityRating(limit: number): Promise<CompanyRatingDto[]> {
   const results = await this.feedbackRepository.findTopCompaniesByAccessibilityRating(limit);
-  console.log('Top Companies Results:', results); // Adicione este log para debug
   return results;
 }
 
